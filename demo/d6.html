@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/babel">
+
+var Test = React.createClass({
+    render: function () {
+        return (<div style={{opacity:this.state.opacity}}>
+
+                    123412342
+                </div>);
+    },
+
+    getInitialState: function () {
+        return {opacity: 0};
+    },
+
+    componentDidMount: function () {
+
+        console.log(1);
+        this.timer = setInterval(function () {
+            var op = this.state.opacity;
+            if (op == 0) {
+                op += 0.1;
+            }
+            else if (op == 1) {
+                op -= 0.1;
+            }
+            this.setState({opacity: op});
+        }.bind(this), 100);
+
+
+
+    }
+});
+
+ReactDOM.render(
+        <Test/>,
+        document.querySelector('#test')
+);
+
+
+</script>
+</body>
+</html>

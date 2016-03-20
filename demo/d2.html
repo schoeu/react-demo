@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/babel">
+
+    var TestPl = React.createClass({
+            render: function () {
+                return <p> test {this.props.name} </p>;
+            }
+    });
+
+    console.log(TestPl);
+
+    ReactDOM.render(
+            <TestPl name="vals" />,
+            document.querySelector('#test')
+    );
+
+</script>
+</body>
+</html>

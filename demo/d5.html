@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/babel">
+
+
+    var i = 11;
+    var TestPl = React.createClass({
+        propTypes: function () {
+            testStr: i + 20
+        },
+        getInitialState: function () {
+            return {
+                value: 'FE'
+            };
+        },
+        changes:function (e) {
+            console.log(e.target.value);
+            this.setState({value: e.target.value});
+        },
+        proClick: function () {
+            this.refs.ipt.focus();
+            this.setState({isLike: ++i});
+            this.refs.ipt.value = this.state.isLike;
+        },
+        proConfirm: function () {
+            console.log(this.props);
+            this.refs.ipt.value = this.props.testStr;
+        },
+        render: function () {
+            var value = this.state.value;
+            return (
+                    <div>
+                    <input id="xxx" ref="ipt" type="text" onChange={this.changes}/>
+                    <p>{value}</p>
+                    <br/>
+                    <input type="button" onClick={this.proClick} value="focus"/>
+                    <br/>
+                    <input type="button" onClick={this.proConfirm} value="confirm"/>
+                    </div>
+            )
+        }
+    });
+
+    ReactDOM.render(
+    <TestPl testStr="asdf"/>,
+            document.querySelector('#test')
+    );
+</script>
+</body>
+</html>

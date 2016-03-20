@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/babel">
+    var arr = ['apple', 'facebook', 'microsoft'];
+    ReactDOM.render(
+            <h3>
+                {
+                    arr.map(function (e) {
+                        return <p><i>{e}</i></p>
+                    })
+                }
+            </h3>,
+            document.getElementById('test')
+    );
+
+</script>
+</body>
+</html>

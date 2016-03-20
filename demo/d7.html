@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <script src="../build/zepto.js"></script>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/babel">
+
+    var Test = React.createClass({
+        render: function () {
+            return (<div>
+                <p>{this.state.name}</p>
+                <p>{this.state.psw}</p>
+            </div>);
+        },
+
+        getInitialState: function () {
+            return {
+                name: 'testName',
+                psw: '123456'
+            };
+        },
+
+        componentDidMount: function () {
+            console.log(this.props.srcUrl);
+            $.get(this.props.srcUrl, function (data) {
+                if (data) {
+                    var d = JSON.parse(data)[0];
+                    this.setState({
+                        name: d.id,
+                        psw: d.comments
+                    });
+                }
+            }.bind(this));
+
+
+        }
+    });
+
+    ReactDOM.render(
+    <Test srcUrl="https://api.github.com/users/octocat/gists"/>,
+            document.querySelector('#test')
+    );
+
+
+</script>
+</body>
+</html>
